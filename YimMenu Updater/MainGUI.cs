@@ -16,6 +16,7 @@ using System.Net.Http;
 using System.Net;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using RestSharp;
+using YimUpdater;
 
 namespace YimUpdater
 {
@@ -52,12 +53,12 @@ namespace YimUpdater
 
         private void CloseBtn_Click(object? sender, EventArgs e)
         {
-            CloseBtn.BackgroundImage = YimMenu_Updater.Properties.Resources.closeBtn_a;
+            CloseBtn.BackgroundImage = YimUpdater.Properties.Resources.closeBtn_a;
             System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
             timer.Interval = 500;
             timer.Tick += (object? sender, EventArgs e) =>
             {
-                CloseBtn.BackgroundImage = YimMenu_Updater.Properties.Resources.closeBtn_h;
+                CloseBtn.BackgroundImage = YimUpdater.Properties.Resources.closeBtn_h;
                 Environment.Exit(0);
             };
             timer.Start();
@@ -66,21 +67,21 @@ namespace YimUpdater
         private void CloseBtn_Hover(object? sender, EventArgs e)
         {
             //CloseBtn.BackgroundImage = ResourceReader
-            CloseBtn.BackgroundImage = YimMenu_Updater.Properties.Resources.closeBtn_h;
+            CloseBtn.BackgroundImage = YimUpdater.Properties.Resources.closeBtn_h;
         }
 
         private void CloseBtn_Leave(object? sender, EventArgs e)
         {
-            CloseBtn.BackgroundImage = YimMenu_Updater.Properties.Resources.closeBtn;
+            CloseBtn.BackgroundImage = YimUpdater.Properties.Resources.closeBtn;
         }
         private void MinBtn_Click(object? sender, EventArgs e)
         {
-            minBtn.BackgroundImage = YimMenu_Updater.Properties.Resources.minBtn_a;
+            minBtn.BackgroundImage = YimUpdater.Properties.Resources.minBtn_a;
             System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
             timer.Interval = 500;
             timer.Tick += (object? sender, EventArgs e) =>
             {
-                minBtn.BackgroundImage = YimMenu_Updater.Properties.Resources.minBtn_h;
+                minBtn.BackgroundImage = YimUpdater.Properties.Resources.minBtn_h;
                 this.WindowState = FormWindowState.Minimized;
                 timer.Stop();
             };
@@ -89,12 +90,12 @@ namespace YimUpdater
 
         private void MinBtn_Hover(object? sender, EventArgs e)
         {
-            minBtn.BackgroundImage = YimMenu_Updater.Properties.Resources.minBtn_h;
+            minBtn.BackgroundImage = YimUpdater.Properties.Resources.minBtn_h;
         }
 
         private void MinBtn_Leave(object? sender, EventArgs e)
         {
-            minBtn.BackgroundImage = YimMenu_Updater.Properties.Resources.minBtn;
+            minBtn.BackgroundImage = YimUpdater.Properties.Resources.minBtn;
         }
 
         public static int calcposy;
@@ -265,21 +266,27 @@ namespace YimUpdater
                          Path.Combine(yimMenuFolder, "animDictsCompact.json"),
                          "Animations Dictionary downloaded successfully to ");
         }
-        private async void InstallXMLBTN(object? sender, EventArgs e)
+        private void InstallXMLBTN(object? sender, EventArgs e)
         {
-            /*HttpClient httpc = new HttpClient();
-            StringContent content = new StringContent("{\"api\": \"true\"}", Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await httpc.PostAsync("http://deadlineem.blackant02.com/", content);*/
-            var client = new RestClient("http://deadlineem.blackant02.com/");
-            var request = new RestRequest();
-            request.AddParameter("api", "true");
-            var response = client.Post(request);
-            var client2 = new RestClient("http://deadlineem.blackant02.com/");
-            string file = "idk.help";
-            var request2 = new RestRequest(file);
-            byte[]? downloadedfile = client2.DownloadData(request2);
-            File.WriteAllBytes(file, downloadedfile);
-            Console.WriteLine(response.Content);
+            try
+            {
+                var client = new RestClient("http://deadlineem.blackant02.com/");
+                string file = "xml_maps.zip";
+                var request = new RestRequest(file);
+                byte[]? downloadedfile = client.DownloadData(request);
+                File.WriteAllBytes(file, downloadedfile);
+                var client2 = new RestClient("http://deadlineem.blackant02.com/");
+                string file2 = "xml_vehicles.zip";
+                var request2 = new RestRequest(file2);
+                byte[]? downloadedfile2 = client2.DownloadData(request2);
+                File.WriteAllBytes(file2, downloadedfile2);
+                MessageBox.Show("Files Downloaded Successfully.", "Files Downloaded");
+            }
+            catch (Exception ex)
+            {
+                Form error = new Download_Error(ex.Message);
+                error.Show();
+            }
         }
     }
 }

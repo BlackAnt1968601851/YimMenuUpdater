@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace YimMenu_Updater.Properties {
+namespace YimUpdater.Properties {
     using System;
     
     

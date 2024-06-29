@@ -4,6 +4,9 @@
     <_LastSelectedProfileId>C:\Users\BlackAnt02\source\repos\YimMenu Updater\YimMenu Updater\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Update="Download Error.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="MainGUI.cs">
       <SubType>Form</SubType>
     </Compile>

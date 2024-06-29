@@ -91,7 +91,7 @@
             // CloseBtn
             // 
             CloseBtn.BackColor = Color.Transparent;
-            CloseBtn.BackgroundImage = YimMenu_Updater.Properties.Resources.closeBtn;
+            CloseBtn.BackgroundImage = YimUpdater.Properties.Resources.closeBtn;
             CloseBtn.BackgroundImageLayout = ImageLayout.Center;
             CloseBtn.FlatAppearance.BorderSize = 0;
             CloseBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
@@ -107,7 +107,7 @@
             // minBtn
             // 
             minBtn.BackColor = Color.Transparent;
-            minBtn.BackgroundImage = YimMenu_Updater.Properties.Resources.minBtn;
+            minBtn.BackgroundImage = YimUpdater.Properties.Resources.minBtn;
             minBtn.BackgroundImageLayout = ImageLayout.Center;
             minBtn.FlatAppearance.BorderSize = 0;
             minBtn.FlatAppearance.MouseDownBackColor = Color.Transparent;
@@ -409,7 +409,7 @@
             logoImage.BackColor = Color.Transparent;
             logoImage.CheckedState.ImageSize = new Size(64, 64);
             logoImage.HoverState.ImageSize = new Size(64, 64);
-            logoImage.Image = YimMenu_Updater.Properties.Resources.icon;
+            logoImage.Image = YimUpdater.Properties.Resources.icon;
             logoImage.ImageOffset = new Point(0, 0);
             logoImage.ImageRotate = 0F;
             logoImage.Location = new Point(527, -1);
@@ -437,7 +437,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
-            BackgroundImage = YimMenu_Updater.Properties.Resources.titlebar_buttons;
+            BackgroundImage = YimUpdater.Properties.Resources.titlebar_buttons;
             ClientSize = new Size(1118, 628);
             Controls.Add(progressBar1);
             Controls.Add(programTitle);
