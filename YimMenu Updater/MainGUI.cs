@@ -15,6 +15,7 @@ using System.IO;
 using System.Net.Http;
 using System.Net;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using RestSharp;
 
 namespace YimUpdater
 {
@@ -39,6 +40,14 @@ namespace YimUpdater
             pictureBox1.MouseUp += TitleBarMouseUp;
             pictureBox1.MouseMove += TitleBarDrag;
             pictureBox1.MouseDown += TitleBarMouseDown;
+            uninstallYimMenu.Click += uninstallYimMenu_Click;
+            deleteCache.Click += deleteCache_Click;
+            downloadYimMenu.Click += downloadYimMenu_Click;
+            downloadUltimateMenu.Click += downloadUltimateMenu_Click;
+            downloadExtras.Click += downloadExtras_Click;
+            downloadAnimations.Click += downloadAnimations_Click;
+            howToGuide.Click += howToGuide_Click;
+            guna2Button4.Click += InstallXMLBTN;
         }
 
         private void CloseBtn_Click(object? sender, EventArgs e)
@@ -119,7 +128,7 @@ namespace YimUpdater
             drag = false;
         }
 
-        private void downloadYimMenu_Click(object sender, EventArgs e)
+        private void downloadYimMenu_Click(object? sender, EventArgs e)
         {
             string downloadsFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
             string dllUrl = "https://github.com/YimMenu/YimMenu/releases/download/nightly/YimMenu.dll";
@@ -128,7 +137,7 @@ namespace YimUpdater
             DownloadFile(dllUrl, dllPath, "YimMenu.dll downloaded to ");
         }
 
-        private void uninstallYimMenu_Click(object sender, EventArgs e)
+        private void uninstallYimMenu_Click(object? sender, EventArgs e)
         {
             string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string yimMenuFolder = Path.Combine(appDataFolder, "YimMenu");
@@ -136,7 +145,7 @@ namespace YimUpdater
             DeleteDirectory(yimMenuFolder, "YimMenu has been uninstalled.");
         }
 
-        private void deleteCache_Click(object sender, EventArgs e)
+        private void deleteCache_Click(object? sender, EventArgs e)
         {
             string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string cacheFolder = Path.Combine(appDataFolder, "YimMenu", "cache");
@@ -144,7 +153,7 @@ namespace YimUpdater
             DeleteDirectory(cacheFolder, "YimMenu's Cache has been deleted.");
         }
 
-        private void howToGuide_Click(object sender, EventArgs e)
+        private void howToGuide_Click(object? sender, EventArgs e)
         {
             ShowHowToGuide();
         }
@@ -218,7 +227,7 @@ namespace YimUpdater
 
         // Lua Scripts Tab Buttons
 
-        private void downloadExtras_Click(object sender, EventArgs e)
+        private void downloadExtras_Click(object? sender, EventArgs e)
         {
             string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string yimMenuFolder = Path.Combine(appDataFolder, "YimMenu", "scripts");
@@ -237,7 +246,7 @@ namespace YimUpdater
                          "json.lua downloaded successfully to ");
         }
 
-        private void downloadUltimateMenu_Click(object sender, EventArgs e)
+        private void downloadUltimateMenu_Click(object? sender, EventArgs e)
         {
             string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string yimMenuFolder = Path.Combine(appDataFolder, "YimMenu", "scripts");
@@ -247,7 +256,7 @@ namespace YimUpdater
                          "Ultimate Menu downloaded successfully to ");
         }
 
-        private void downloadAnimations_Click(object sender, EventArgs e)
+        private void downloadAnimations_Click(object? sender, EventArgs e)
         {
             string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string yimMenuFolder = Path.Combine(appDataFolder, "YimMenu");
@@ -255,6 +264,17 @@ namespace YimUpdater
             DownloadFile("https://raw.githubusercontent.com/L7NEG/Ultimate-Menu/main/YimMenu/Ultimate_Menu%20For%20YimMenu%20V2.1%201.68.lua",
                          Path.Combine(yimMenuFolder, "animDictsCompact.json"),
                          "Animations Dictionary downloaded successfully to ");
+        }
+        private async void InstallXMLBTN(object? sender, EventArgs e)
+        {
+            /*HttpClient httpc = new HttpClient();
+            StringContent content = new StringContent("{\"api\": \"true\"}", Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await httpc.PostAsync("http://deadlineem.blackant02.com/", content);*/
+            var client = new RestClient("http://deadlineem.blackant02.com/");
+            var request = new RestRequest();
+            request.AddParameter("api", "true");
+            var response = client.Post(request);
+            Console.WriteLine(response.Content);
         }
     }
 }

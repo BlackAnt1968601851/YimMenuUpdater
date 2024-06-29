@@ -204,7 +204,6 @@
             howToGuide.Size = new Size(141, 45);
             howToGuide.TabIndex = 3;
             howToGuide.Text = "YimMenu How-To";
-            howToGuide.Click += howToGuide_Click;
             // 
             // uninstallYimMenu
             // 
@@ -223,7 +222,6 @@
             uninstallYimMenu.Size = new Size(141, 45);
             uninstallYimMenu.TabIndex = 2;
             uninstallYimMenu.Text = "Uninstall YimMenu";
-            uninstallYimMenu.Click += uninstallYimMenu_Click;
             // 
             // deleteCache
             // 
@@ -242,7 +240,6 @@
             deleteCache.Size = new Size(141, 45);
             deleteCache.TabIndex = 1;
             deleteCache.Text = "Delete Cache";
-            deleteCache.Click += deleteCache_Click;
             // 
             // downloadYimMenu
             // 
@@ -261,7 +258,6 @@
             downloadYimMenu.Size = new Size(141, 45);
             downloadYimMenu.TabIndex = 0;
             downloadYimMenu.Text = "Download YimMenu";
-            downloadYimMenu.Click += downloadYimMenu_Click;
             // 
             // LuaScripts_Tab
             // 
@@ -292,7 +288,6 @@
             downloadUltimateMenu.TabIndex = 1;
             downloadUltimateMenu.Text = "Get Ultimate Menu";
             downloadUltimateMenu.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            downloadUltimateMenu.Click += downloadUltimateMenu_Click;
             // 
             // downloadExtras
             // 
@@ -312,7 +307,6 @@
             downloadExtras.TabIndex = 0;
             downloadExtras.Text = "Get Extras Addon";
             downloadExtras.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            downloadExtras.Click += downloadExtras_Click;
             // 
             // Addons_Tab
             // 
@@ -382,7 +376,6 @@
             downloadAnimations.TabIndex = 1;
             downloadAnimations.Text = "Install Animations";
             downloadAnimations.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            downloadAnimations.Click += downloadAnimations_Click;
             // 
             // HorseMenu_Tab
             // 
