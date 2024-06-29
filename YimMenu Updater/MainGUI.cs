@@ -266,27 +266,36 @@ namespace YimUpdater
                          Path.Combine(yimMenuFolder, "animDictsCompact.json"),
                          "Animations Dictionary downloaded successfully to ");
         }
+        public static bool errorstat;
+        public static string? dfile;
         private void InstallXMLBTN(object? sender, EventArgs e)
         {
             try
             {
-                var client = new RestClient("http://deadlineem.blackant02.com/");
-                string file = "xml_maps.zip";
-                var request = new RestRequest(file);
-                byte[]? downloadedfile = client.DownloadData(request);
-                File.WriteAllBytes(file, downloadedfile);
-                var client2 = new RestClient("http://deadlineem.blackant02.com/");
-                string file2 = "xml_vehicles.zip";
-                var request2 = new RestRequest(file2);
-                byte[]? downloadedfile2 = client2.DownloadData(request2);
-                File.WriteAllBytes(file2, downloadedfile2);
-                MessageBox.Show("Files Downloaded Successfully.", "Files Downloaded");
+                dfile = "xml_vehicles.zip";
+                downloadfile("xml_vehicles.zip");
+                dfile = "xml_maps.zip";
+                downloadfile("xml_maps.zip");
             }
             catch (Exception ex)
             {
-                Form error = new Download_Error(ex.Message);
+                errorstat = true;
+                Form error = new Download_Error("Failed to download " + dfile + " error: " + ex.Message);
                 error.Show();
             }
+            if (errorstat == false)
+            {
+                MessageBox.Show("Files Downloaded Successfully.", "Files Downloaded");
+            }
+            errorstat = false;
+            dfile = null;
+        }
+        public void downloadfile(string file)
+        {
+            var client = new RestClient("http://deadlineem.blackant02.com/");
+            var request = new RestRequest(file);
+            byte[]? downloadedfile = client.DownloadData(request);
+            File.WriteAllBytes(file, downloadedfile);
         }
     }
 }
